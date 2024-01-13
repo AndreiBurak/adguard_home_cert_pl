@@ -31,8 +31,8 @@ jobs:
          $version = (Get-Content .\domains_adblock.txt)[1] -replace ".*version:\s*([^\s]+).*",'$1'
          echo "version=$version" >> $GITHUB_OUTPUT
       - name: Push new List
-        run:
+        run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -a -m "Add changes vrsion ${{ steps.convert_list.outputs.version }}"
+          git commit -a -m "Add changes version ${{ steps.convert_list.outputs.version }}"
         
