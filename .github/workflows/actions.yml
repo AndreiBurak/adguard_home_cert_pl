@@ -29,7 +29,7 @@ jobs:
          Invoke-WebRequest -Uri "https://hole.cert.pl/domains/domains_adblock.txt" -OutFile .\domains_adblock.txt
          Set-Content -Path .\domains_adblock_fixed.txt -Value (Get-Content .\domains_adblock.txt).Replace("^`$all","^") -Force
          $version = (Get-Content .\domains_adblock.txt)[1] -replace ".*version:\s*([^\s]+).*",'$1'
-         echo "version=$version" >> $GITHUB_OUTPUT
+         Write-Output "version=$($version)" >> $GITHUB_OUTPUT
       - name: Push new List
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
