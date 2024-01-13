@@ -36,4 +36,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add domains_adblock_fixed.txt
           git commit -a -m "Add changes version ${{ steps.convert_list.outputs.version }}"
-        
+          git push
