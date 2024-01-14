@@ -38,4 +38,5 @@ jobs:
           git add domains_adblock_fixed.txt
           # git commit -a -m "Add changes version ${{ steps.convert_list.outputs.version }}"
           git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add changes version ${{ steps.convert_list.outputs.version }}"
-          git push origin/main v.${{ steps.convert_list.outputs.version }}
+          # git push origin v.${{ steps.convert_list.outputs.version }}
+          git push --follow-tags
