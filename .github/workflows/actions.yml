@@ -36,6 +36,6 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add domains_adblock_fixed.txt
-          git commit -a -m "Add changes version ${{ steps.convert_list.outputs.version }}
-          git tag "v.${{ steps.convert_list.outputs.version }}"
-          git push main v.${{ steps.convert_list.outputs.version }}
+          # git commit -a -m "Add changes version ${{ steps.convert_list.outputs.version }}"
+          git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add changes version ${{ steps.convert_list.outputs.version }}"
+          git push origin/main v.${{ steps.convert_list.outputs.version }}
