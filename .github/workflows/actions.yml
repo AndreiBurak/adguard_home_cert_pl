@@ -43,17 +43,3 @@ jobs:
           # git push --atomic origin main v.${{ steps.convert_list.outputs.version }}
           git push --follow-tags
 
-      - name: Install JQ
-        run: sudo apt-get install jq
-            
-      - name: Delete old tags
-        run: |
-            gh auth login --with-token ${{env.TOKEN }}
-            repo=${GITHUB_REPOSITORY}
-            since=$(date -d '7 days ago' -u +%Y-%m-%dT%H:%M:%S%Z)
-            tags=$(gh api -X GET /repos/$repo/git/refs/tags -q '.[]| select(.object.type?"tag")| select(.object.url|test("https://github.com/'$repo'/git/tags/";"i"))| select(.object.url|gh api -q .tagger.date|test(".*<='$since'"))| .ref') 
-            for tag in $tags; do
-              echo Deleting $tag
-              gh api -X DELETE /repos/$repo/git/$tag
-            done
-  
