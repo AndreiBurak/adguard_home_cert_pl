@@ -15,9 +15,11 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    env:
+      TOKEN: GITHUB_TOKEN${{ secrets.GITHUB_TOKEN }}
+    
     steps:
+      
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
@@ -42,5 +44,7 @@ jobs:
           git push --follow-tags
       - name: Clean tags
         run: |
-          git for-each-ref --sort=taggerdate --format '%(refname:short) %(taggerdate:raw)' refs/tags | awk '$2 < '$(date -d '10 days ago' +%s)'' | cut -d ' ' -f 1 | xargs -I {} git tag -d {} 
+          export GIT_ASKPASS="echo $TOKEN"  # Replace $TOKEN with your actual token
+          git fetch --prune --tags
+          git for-each-ref --sort=taggerdate --format '%(refname:short) %(taggerdate:raw)' refs/tags | awk '$2 < '$(date -d '60 days ago' +%s)'' | cut -d ' ' -f 1 | xargs -I {} git tag -d {} 
           git push origin --delete {}
