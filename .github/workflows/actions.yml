@@ -42,16 +42,18 @@ jobs:
           git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add changes version ${{ steps.convert_list.outputs.version }}"
           # git push --atomic origin main v.${{ steps.convert_list.outputs.version }}
           git push --follow-tags
-      - name: Clean tags
-        if: always()
+          
+      - name: Install JQ
+        run: sudo apt-get install jq
+            
+      - name: Delete old tags
         run: |
-          git fetch origin --prune --tags
-          for tag in $(git for-each-ref --format='%(refname:short)' refs/tags); do
-            tag_date=$(git show -s --format=%ci $tag tail -c < 24)
-            tag_timestamp=$(date -d "$tag_date" +%s)
-            week_ago=$(date -d"7 days ago" +%s)
-            if [[ $tag_timestamp -lt $week_ago ]]; then
-              git tag -d $tag
-              git push origin :$tag
-            fi
-          done
+            gh auth login --with-token ${{env.TOKEN }}
+            repo=${GITHUB_REPOSITORY}
+            since=$(date -d '7 days ago' -u +%Y-%m-%dT%H:%M:%S%Z)
+            tags=$(gh api -X GET /repos/$repo/git/refs/tags -q '.[]| select(.object.type?"tag")| select(.object.url|test("https://github.com/'$repo'/git/tags/";"i"))| select(.object.url|gh api -q .tagger.date|test(".*<='$since'"))| .ref') 
+            for tag in $tags; do
+              echo Deleting $tag
+              gh api -X DELETE /repos/$repo/git/$tag
+            done
+  
