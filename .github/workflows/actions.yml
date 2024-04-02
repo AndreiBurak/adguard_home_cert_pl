@@ -44,7 +44,11 @@ jobs:
           git push --follow-tags
       - name: Clean tags
         run: |
-          export GIT_ASKPASS="echo $TOKEN"  # Replace $TOKEN with your actual token
-          git fetch --prune --tags
-          git for-each-ref --sort=taggerdate --format '%(refname:short) %(taggerdate:raw)' refs/tags | awk '$2 < '$(date -d '60 days ago' +%s)'' | cut -d ' ' -f 1 | xargs -I {} git tag -d {} 
-          git push origin --delete {}
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          repo=${GITHUB_REPOSITORY}
+          since=$(date -d '7 days ago' -u +%Y-%m-%dT%H:%M:%S%Z)
+          tags=$(gh api -X GET /repos/$repo/git/refs/tags -q '.[]| select(.object.type?"tag")| select(.object.url|test("https://github.com/'$repo'/git/tags/";"i"))| select(.object.url|gh api -q .tagger.date|test(".*<='$since'"))| .ref') 
+          for tag in $tags; do
+              echo Deleting $tag
+              gh api -X DELETE /repos/$repo/git/$tag
+          done
