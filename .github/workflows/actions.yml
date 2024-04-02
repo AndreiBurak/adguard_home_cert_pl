@@ -31,6 +31,7 @@ jobs:
         id: convert_list
         shell: pwsh
         run: |
+         Remove-Item -Path .\domains_adblock_fixed.txt -Force
          Invoke-WebRequest -Uri "https://hole.cert.pl/domains/domains_adblock.txt" -OutFile .\domains_adblock.txt
          Set-Content -Path .\domains_adblock_fixed.txt -Value (Get-Content .\domains_adblock.txt).Replace("^`$all","^") -Force
          $version = (Get-Content .\domains_adblock.txt)[1] -replace ".*version:\s*([^\s]+).*",'$1'
@@ -42,6 +43,10 @@ jobs:
           git add domains_adblock_fixed.txt
           git commit -a -m "Add changes version ${{ steps.convert_list.outputs.version }}"
           git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add changes version ${{ steps.convert_list.outputs.version }}"
-          # git push --atomic origin main v.${{ steps.convert_list.outputs.version }}
           git push --follow-tags
           gh release create v.${{ steps.convert_list.outputs.version }} --latest 
+      - uses: dev-drprasad/delete-older-releases@v0.3.3
+        name: Clean old releases
+        with:
+          keep_latest: 10
+          delete_tags: true
