@@ -16,7 +16,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      TOKEN: GITHUB_TOKEN${{ secrets.GITHUB_TOKEN }}
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
       
@@ -42,7 +42,7 @@ jobs:
           git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add changes version ${{ steps.convert_list.outputs.version }}"
           # git push --atomic origin main v.${{ steps.convert_list.outputs.version }}
           git push --follow-tags
-          
+
       - name: Install JQ
         run: sudo apt-get install jq
             
