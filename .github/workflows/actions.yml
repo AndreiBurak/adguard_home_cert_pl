@@ -47,7 +47,7 @@ jobs:
         run: |
           git fetch origin --prune --tags
           for tag in $(git for-each-ref --format='%(refname:short)' refs/tags); do
-            tag_date=$(git show -s --format=%ci $tag)
+            tag_date=$(git show -s --format=%ci $tag tail -c < 24)
             tag_timestamp=$(date -d "$tag_date" +%s)
             week_ago=$(date -d"7 days ago" +%s)
             if [[ $tag_timestamp -lt $week_ago ]]; then
