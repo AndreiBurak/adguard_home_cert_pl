@@ -43,6 +43,7 @@ jobs:
           # git push --atomic origin main v.${{ steps.convert_list.outputs.version }}
           git push --follow-tags
       - name: Clean tags
+        if: always()
         run: |
           git fetch origin --prune --tags
           for tag in $(git for-each-ref --format='%(refname:short)' refs/tags); do
