@@ -1,0 +1,99 @@
+{
+  "name": "Andrei's List",
+  "description": "Compiled list from differenr sources",
+  "homepage": "https://example.org/",
+  "license": "GPLv3",
+  "version": "1.0.0.0",
+  "sources": [
+    {
+      "name": "Polish filters for Pi-hole",
+      "source": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt",
+      "type": "hosts",
+      "transformations": ["RemoveComments","RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+      "name": "AdGuard DNS filter",
+      "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt",
+      "type": "hosts",
+      "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "CERT.PL's Warning List",
+        "source": "https://hole.cert.pl/domains/domains_hosts.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Russian filter",
+        "source": "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_1_Russian/filter.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "HaGeZi's Pro++ Blocklist",
+        "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_51.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "OISD Blocklist Big",
+        "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Phishing Army",
+        "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_18.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Phishing URL Blocklist (PhishTank and OpenPhish)",
+        "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "uBlock filters - Badware risks",
+        "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_50.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines","Validate"]
+    },
+    {
+        "name": "Malicious URL Blocklist (URLHaus)",
+        "source": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "EasyList ADServer",
+        "source": "https://raw.githubusercontent.com/easylist/easylist/master/easylist/easylist_adservers.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines","Validate"]
+    },
+    {
+        "name": "StevenBlack",
+        "source": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines","Validate"]
+    },
+    {
+        "name": "EasyList Main",
+        "source": "https://easylist.to/easylist/easylist.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "EasyList RU",
+        "source": "https://easylist-downloads.adblockplus.org/ruadlist.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    }
+  ],
+  "transformations": [
+    "Compress",
+    "Deduplicate",
+    "RemoveEmptyLines",
+    "InsertFinalNewLine"
+]
+}
