@@ -40,7 +40,7 @@ jobs:
           npm i -g @adguard/hostlist-compiler 
       - name: Compile new list
         run: |
-         hostlist-compiler -c configuration.json -o domains_adblock.txt
+         hostlist-compiler -c configuration.json -o .\domains_adblock_fixed.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push new List
