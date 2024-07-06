@@ -23,18 +23,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Convert CERT List 
-        env:
-          POWERSHELL_TELEMETRY_OPTOUT: 1
-        id: convert_list
-        shell: pwsh
+      # - name: Convert CERT List 
+      #   env:
+      #     POWERSHELL_TELEMETRY_OPTOUT: 1
+      #   id: convert_list
+      #   shell: pwsh
+      #   run: |
+      #    Remove-Item -Path .\domains_adblock_fixed.txt -Force
+      #    Invoke-WebRequest -Uri "https://hole.cert.pl/domains/domains_adblock.txt" -OutFile .\domains_adblock.txt
+      #    Set-Content -Path .\domains_adblock_fixed.txt -Value (Get-Content .\domains_adblock.txt).Replace("^`$all","^") -Force
+      #    $version = (Get-Content .\domains_adblock.txt)[1] -replace ".*version:\s*([^\s]+).*",'$1'
+      #    Write-Output "version=$($version)" >> $ENV:GITHUB_OUTPUT
+      # - name: Push new List
+      - name: Install dependencies
         run: |
-         Remove-Item -Path .\domains_adblock_fixed.txt -Force
-         Invoke-WebRequest -Uri "https://hole.cert.pl/domains/domains_adblock.txt" -OutFile .\domains_adblock.txt
-         Set-Content -Path .\domains_adblock_fixed.txt -Value (Get-Content .\domains_adblock.txt).Replace("^`$all","^") -Force
-         $version = (Get-Content .\domains_adblock.txt)[1] -replace ".*version:\s*([^\s]+).*",'$1'
-         Write-Output "version=$($version)" >> $ENV:GITHUB_OUTPUT
-      - name: Push new List
+          npm i -g @adguard/hostlist-compiler 
+      - name: Compile new list
+        run: |
+         hostlist-compiler -c configuration.json -o domains_adblock.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
