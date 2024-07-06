@@ -34,7 +34,7 @@ jobs:
       #    Set-Content -Path .\domains_adblock_fixed.txt -Value (Get-Content .\domains_adblock.txt).Replace("^`$all","^") -Force
       #    $version = (Get-Content .\domains_adblock.txt)[1] -replace ".*version:\s*([^\s]+).*",'$1'
       #    Write-Output "version=$($version)" >> $ENV:GITHUB_OUTPUT
-      # - name: Push new List
+     
       - name: Install dependencies
         run: |
           npm i -g @adguard/hostlist-compiler 
@@ -43,6 +43,7 @@ jobs:
          hostlist-compiler -c configuration.json -o domains_adblock.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push new List
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
