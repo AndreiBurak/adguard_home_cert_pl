@@ -118,6 +118,7 @@
   "transformations": [
     "Compress",
     "Deduplicate",
+    "Validate",
     "RemoveEmptyLines",
     "InsertFinalNewLine"
 ]
