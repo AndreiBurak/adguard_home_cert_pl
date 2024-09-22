@@ -40,7 +40,80 @@
         "source": "https://easylist-downloads.adblockplus.org/ruadlist.txt",
         "type": "hosts",
         "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Common social trackers",
+        "source": "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_4_Social/filter.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Online Malicious URL Blocklist",
+        "source": "https://urlhaus-filter.pages.dev/urlhaus-filter-ag-online.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "AdGuard Russian filter",
+        "source": "https://filters.adtidy.org/android/filters/1_optimized.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Polskie Filtry RODO-Ciasteczkowe",
+        "source": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/cookies_filters/adblock_cookies.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Polskie Filtry Elementów Irytujących",
+        "source": "https://raw.githubusercontent.com/PolishFiltersTeam/PolishAnnoyanceFilters/master/PPB.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Polski Antyirytujący Dodatek Specjalny",
+        "source": "https://raw.githubusercontent.com/PolishFiltersTeam/PolishAntiAnnoyingSpecialSupplement/master/polish_rss_filters.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "EasyList Polish",
+        "source": "https://easylist-downloads.adblockplus.org/easylistpolish.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Polskie Filtry Społecznościowe",
+        "source": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/adblock_social_filters/adblock_social_list.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Polish Anti Adblock Filters",
+        "source": "https://raw.githubusercontent.com/olegwukr/polish-privacy-filters/master/anti-adblock.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Official Polish Filters for AdBlock, uBlock Origin & AdGuard",
+        "source": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-adblock-filters/adblock.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Adguard Spyware General",
+        "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/refs/heads/master/SpywareFilter/sections/general_url.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    },
+    {
+        "name": "Adguard Spyware General",
+        "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/refs/heads/master/SpywareFilter/sections/mobile.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
     }
+
   ],
   "transformations": [
     "Compress",
