@@ -50,9 +50,9 @@ jobs:
           git add domains_adblock_fixed.txt
           # git commit -a -m "Updated lists"
           # git push
-          git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add version ${{ steps.convert_list.outputs.version }}"
+          git tag -a "v.$(date '+%Y%m%d%H%M')" -m "Add version $(date '+%Y%m%d%H%M')"
           git push --follow-tags
-          gh release create v.${{ steps.convert_list.outputs.version }} --latest 
+          gh release create v.$(date '+%Y%m%d%H%M') --latest 
       - uses: dev-drprasad/delete-older-releases@v0.3.4
         name: Clean old releases
         with:
