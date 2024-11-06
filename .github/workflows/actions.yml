@@ -53,11 +53,11 @@ jobs:
           # git tag -a "v.${{ steps.convert_list.outputs.version }}" -m "Add changes version ${{ steps.convert_list.outputs.version }}"
           # git push --follow-tags
           # gh release create v.${{ steps.convert_list.outputs.version }} --latest 
-      - uses: dev-drprasad/delete-older-releases@v0.3.3
+      - uses: dev-drprasad/delete-older-releases@v0.3.4
         name: Clean old releases
         with:
-          keep_latest: 10
-          delete_tags: true
-          delete_expired_data: 1
+           keep_latest: 3
+           delete_expired_data: 10 # Optional parameters
+           delete_tags: true           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
