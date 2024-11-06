@@ -53,10 +53,10 @@ jobs:
           git tag -a "v.$(date '+%Y%m%d%H%M')" -m "Add version $(date '+%Y%m%d%H%M')"
           git push --follow-tags
           gh release create v.$(date '+%Y%m%d%H%M') --latest 
-      - uses: dev-drprasad/delete-older-releases@v0.3.4
-        name: Clean old releases
+      - uses: Nats-ji/delete-old-releases@v1
+        name: Delete old release
         with:
-           keep_latest: 24
-           delete_tags: true           
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          remove-tags: true
+          keep-count: 24
+          keep-old-minor-releases: false
