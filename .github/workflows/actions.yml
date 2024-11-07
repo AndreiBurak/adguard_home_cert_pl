@@ -55,10 +55,11 @@ jobs:
           gh release create v.$(date '+%Y%m%d%H%M') --latest 
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: Nats-ji/delete-old-releases@v1
-        name: Delete old release
+      - uses: dev-drprasad/delete-older-releases@v0.3.4
+        name: Clean old releases
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          remove-tags: true
-          keep-count: 24
-          keep-old-minor-releases: false
+           keep_latest: 3
+           delete_expired_data: 10 # Optional parameters
+           delete_tags: true           
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
