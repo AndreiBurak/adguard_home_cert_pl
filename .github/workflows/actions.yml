@@ -53,6 +53,8 @@ jobs:
           git tag -a "v.$(date '+%Y%m%d%H%M')" -m "Add version $(date '+%Y%m%d%H%M')"
           git push --follow-tags
           gh release create v.$(date '+%Y%m%d%H%M') --latest 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: Nats-ji/delete-old-releases@v1
         name: Delete old release
         with:
