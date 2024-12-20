@@ -113,6 +113,12 @@
         "type": "hosts",
         "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
     }
+    {
+        "name": "AdAway list by Shakal",
+        "source": "https://schakal.ru/hosts/hosts.txt",
+        "type": "hosts",
+        "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
+    }
 
   ],
   "transformations": [
