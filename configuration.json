@@ -112,7 +112,7 @@
         "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/refs/heads/master/SpywareFilter/sections/mobile.txt",
         "type": "hosts",
         "transformations": ["RemoveComments", "RemoveModifiers", "TrimLines", "Validate"]
-    }
+    },
     {
         "name": "AdAway list by Shakal",
         "source": "https://schakal.ru/hosts/hosts.txt",
