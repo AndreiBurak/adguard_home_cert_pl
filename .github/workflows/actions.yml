@@ -46,8 +46,8 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add domains_adblock_fixed.txt
-          # git commit -a -m "Updated lists"
-          # git push
+          git commit -a -m "Updated lists"
+          git push
           git tag -a "v.$(date '+%Y%m%d%H%M')" -m "Add version $(date '+%Y%m%d%H%M')"
           git push --follow-tags
           gh release create v.$(date '+%Y%m%d%H%M') --latest 
