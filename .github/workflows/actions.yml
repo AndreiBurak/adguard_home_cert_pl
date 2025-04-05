@@ -41,16 +41,12 @@ jobs:
       - name: Compile new list
         run: |
          hostlist-compiler -c configuration.json -o domains_adblock_fixed.txt
-      - name: Push new List
+      - name: Create Git Tag and Release
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add domains_adblock_fixed.txt
-          git commit -a -m "Updated lists"
-          git push --force
-          git tag -a "v.$(date '+%Y%m%d%H%M')" -m "Add version $(date '+%Y%m%d%H%M')"
-          git push --follow-tags --force
-          gh release create v.$(date '+%Y%m%d%H%M') --latest 
+          VERSION="v.$(date '+%Y%m%d%H%M')"
+          git tag -a "$VERSION" -m "Add version $VERSION"
+          git push origin "$VERSION"
+          gh release create "$VERSION" --latest --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: dev-drprasad/delete-older-releases@v0.3.4
